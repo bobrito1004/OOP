@@ -38,10 +38,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="..\..\..\Labs\lab1\Program.cs">
-          <Link>Program.cs</Link>
-        </Compile>
         <Compile Include="iniParser.cs" />
+        <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Section.cs" />
     </ItemGroup>
