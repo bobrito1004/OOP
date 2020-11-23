@@ -5,15 +5,8 @@ namespace Lab3
 {
     public class AirVehicle : Vehicle
     {
-        public AirVehicle(int speed, string name)
-            : base(speed, name)
+        public AirVehicle(string name, int speed) : base(speed, name)
         {
-        }
-
-        protected AirVehicle()
-        {
-            Speed = 0;
-            Name = "Unknown Air";
         }
 
         public override double Race(double distance)
@@ -24,6 +17,7 @@ namespace Lab3
             {
                 ans += 10 * (100 - i);
             }
+
             ans += (distance - dist * 1000) * (100 - dist);
             return ans;
         }
@@ -31,7 +25,7 @@ namespace Lab3
 
     public class Broom : AirVehicle
     {
-        public Broom()
+        public Broom() : base("Broom", 20)
         {
             Speed = 20;
             Name = "Broom";
@@ -40,10 +34,8 @@ namespace Lab3
 
     public class Carpet : AirVehicle
     {
-        public Carpet()
+        public Carpet() : base("Carpet", 10)
         {
-            Speed = 10;
-            Name = "Carpet";
         }
 
         public override double Race(double distance)
@@ -62,16 +54,15 @@ namespace Lab3
             {
                 return distance - (distance / 10);
             }
+
             return distance - (distance / 20);
         }
     }
 
     public class Stupa : AirVehicle
     {
-        public Stupa()
+        public Stupa() : base("Stupa", 8)
         {
-            Speed = 8;
-            Name = "Stupa";
         }
 
         public override double Race(double distance)

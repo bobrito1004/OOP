@@ -8,7 +8,7 @@ namespace Lab3
         {
             var All = new Race<Vehicle>();
             var Land = new Race<LandVehicle>();
-            var car1 = new LandVehicle("camel", 20, 30, 5);
+            var car1 = new LandVehicle("camel", 10, 30, 5);
             var boot = new Boots();
             var broom = new Broom();
             var mycar = new LandVehicle("BMW", 100, 0, 0);

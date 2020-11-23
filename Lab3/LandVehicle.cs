@@ -6,8 +6,9 @@ namespace Lab3
 {
     public class LandVehicle : Vehicle
     {
-        protected int TimeUntilRest { get; set; }
-        protected int RestTime { get; set; }
+        protected int TimeUntilRest;
+        protected int RestTime;
+
         public LandVehicle(string name, int speed, int TTR, int RT)
             : base(speed, name)
         {
@@ -15,13 +16,6 @@ namespace Lab3
             RestTime = RT;
         }
 
-        protected LandVehicle()
-        {
-            Speed = 0;
-            Name = "Unknown land";
-            TimeUntilRest = 0;
-            RestTime = 0;
-        }
         public override double Race(double distance)
         {
             var time = distance / Speed;
@@ -29,29 +23,22 @@ namespace Lab3
             {
                 return time;
             }
+
             return time + RestTime * Math.Floor(time / TimeUntilRest);
         }
     }
 
     public class Centaur : LandVehicle
     {
-        private Centaur()
+        private Centaur() : base("Centaur", 15, 8, 2)
         {
-            Speed = 15;
-            Name = "Centaur";
-            TimeUntilRest = 8;
-            RestTime = 2;
         }
     }
 
     public class Camel : LandVehicle
     {
-        public Camel()
+        public Camel() : base("Camel", 10, 30, 0)
         {
-            Speed = 10;
-            Name = "Camel";
-            TimeUntilRest = 30;
-            RestTime = 0;
         }
 
         public override double Race(double distance)
@@ -72,12 +59,8 @@ namespace Lab3
 
     public class FastCamel : LandVehicle
     {
-        public FastCamel()
+        public FastCamel() : base("Fast Camel", 40, 10, 0)
         {
-            Speed = 40;
-            Name = "Fast Camel";
-            TimeUntilRest = 10;
-            RestTime = 0;
         }
 
         public override double Race(double distance)
@@ -100,12 +83,8 @@ namespace Lab3
 
     public class Boots : LandVehicle
     {
-        public Boots()
+        public Boots() : base("Boots", 6, 60, 0)
         {
-            Speed = 6;
-            Name = "Boots";
-            TimeUntilRest = 60;
-            RestTime = 0;
         }
 
         public override double Race(double distance)
