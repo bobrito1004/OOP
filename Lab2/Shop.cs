@@ -26,84 +26,69 @@ namespace lab2
             return _name;
         }
 
-        public void add_product(Item it, int amout, int price)
+        public void AddProduct(Item it, int amount, int price)
         {
-            var newIt = new Item.ItemForSale(it, amout, price);
+            var newIt = new Item.ItemForSale(it, amount, price);
             item_list.Add(newIt);
         }
 
         public bool Contains(Item it)
         {
-            return item_list.Any(pr => pr.get_id() == it.get_id());
+            foreach (var item in item_list)
+            {
+                if (it.get_name() == item.get_name())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public int GetItemPrice(Item it)
         {
-            try
+            foreach (var pr in item_list.Where(pr => pr.get_id() == it.get_id()))
             {
-                foreach (var pr in item_list.Where(pr => pr.get_id() == it.get_id()))
-                {
-                    return pr.get_price();
-                }
+                return pr.get_price();
+            }
 
-                throw new Exception();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            throw new Exception();
         }
 
         private int GetItemAmount(Item it)
         {
-            try
+            if (!Contains(it)) throw new Exception("");
+            foreach (var pr in item_list.Where(pr => pr.get_id() == it.get_id()))
             {
-                if (Contains(it))
-                {
-                    foreach (var pr in item_list.Where(pr => pr.get_id() == it.get_id()))
-                    {
-                        return pr.get_amount();
-                    }
-
-                    throw new Exception();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                return pr.get_amount();
             }
 
-            return 0;
+            throw new Exception();
         }
 
-        public void YouCanBuy(int n)
+        public Dictionary<string, int> YouCanBuy(int n)
         {
             if (n < 1)
             {
-                Console.WriteLine("You can`t buy anything");
+                return null;
             }
-            else
+
+            var dict = new Dictionary<string, int>();
+            foreach (var pr in item_list)
             {
-                try
+                var amount = n / pr.get_price();
+                if (amount == 0) continue;
+                if (amount > pr.get_amount())
                 {
-                    foreach (var pr in item_list)
-                    {
-                        var amount = n / pr.get_price();
-                        if (amount != 0)
-                        {
-                            Console.WriteLine(amount > pr.get_amount()
-                                ? $"In {_name} you can buy {pr.get_amount()} {pr.get_name()}"
-                                : $"In {_name} you can buy {amount} {pr.get_name()}");
-                        }
-                    }
+                    dict.Add(pr.get_name(), pr.get_amount());
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(e.Message);
+                    dict.Add(pr.get_name(), amount);
                 }
             }
+
+            return dict;
         }
 
         public int Buy(Item it, int amount)
@@ -114,8 +99,10 @@ namespace lab2
                 {
                     throw new Exception("Not enough products");
                 }
+
                 return amount * pr.get_price();
             }
+
             return 0;
         }
 
