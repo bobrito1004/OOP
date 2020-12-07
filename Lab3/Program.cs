@@ -17,7 +17,7 @@ namespace Lab3
             All.Add(boot);
             All.Add(mycar);
             Land.Add(car1);
-            Land.Add(broom);
+            //Land.Add(broom);
             Land.Add(boot);
             Land.Add(mycar);
             Console.WriteLine(Land.Start(100).Name);
