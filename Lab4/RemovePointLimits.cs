@@ -52,10 +52,5 @@ namespace Lab4
                 backup.Points.RemoveAt(0);
             }
         }
-
-        public void SetLimits()
-        {
-            Max = true;
-        }
     }
 }
