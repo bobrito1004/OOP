@@ -2,10 +2,10 @@
 {
     public abstract class Account
     {
-        public double Balance;
-        public int Id;
-        public Client Owner;
-        public double initialPerc;
+        protected double Balance;
+        private int Id;
+        protected Client Owner;
+        protected double initialPerc;
         public Account(Client client)
         {
             initialPerc = 0;

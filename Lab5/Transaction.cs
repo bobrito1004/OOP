@@ -17,14 +17,7 @@ namespace Lab5
             _to = t;
             Amount = am;
             _status = "done";
-            if (f.Withdraw(Amount))
-            {
-                t.AddMoney(Amount);
-            }
-            else
-            {
-                throw new Exception("Not enough money");
-            }
+            Transfer();
         }
 
         public void Cancel()
@@ -32,6 +25,18 @@ namespace Lab5
             if (!_to.Withdraw(Amount)) throw new Exception("Not enough money");
             _from.AddMoney(Amount);
             _status = "cancelled";
+        }
+
+        private void Transfer()
+        {
+            if (_from.Withdraw(Amount))
+            {
+                _to.AddMoney(Amount);
+            }
+            else
+            {
+                throw new Exception("Not enough money");
+            }
         }
     }
 }
