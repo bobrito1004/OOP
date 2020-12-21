@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Lab5
 {
@@ -45,6 +46,22 @@ namespace Lab5
             catch
             {
                 throw new Exception("Unable to transfer money");
+            }
+        }
+
+        public void CountBonus()
+        {
+            foreach (var Account in Clients.SelectMany(client => client.Accounts))
+            {
+                Account.CountBonus();
+            }
+        }
+        
+        public void AddBonus()
+        {
+            foreach (var Account in Clients.SelectMany(client => client.Accounts))
+            {
+                Account.AddBonus();
             }
         }
     }

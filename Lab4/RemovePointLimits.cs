@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Lab4
 {
@@ -7,6 +8,7 @@ namespace Lab4
     {
         private List<RemovePoint> _limits;
         private bool Max = true;
+        private bool Min = false;
 
         public RemovePointLimits()
         {
@@ -24,6 +26,11 @@ namespace Lab4
             _limits.Remove(limits);
         }
 
+        public void setLimitMax()
+        {
+            Max = true;
+            Min = false;
+        }
         public void PointToRemove(Backup backup)
         {
             if (_limits.Count == 0) return;
